@@ -1,5 +1,7 @@
-//variables
-var descriptionEl = $('.description').find('textarea');
+var tasks = [];
+
+//load work tasks
+
 
 //set current date
 $('#currentDay').text(moment().format("dddd, MMM Do YYYY"));
@@ -21,36 +23,27 @@ function auditSchedule(){
 
 //save work tasks to localStorage
 $('.saveBtn').on('click', function(){
-  var workHour = $('#work-hour').text().trim();
-  var workTask = $('textarea').val().trim();
-  localStorage.setItem(workHour, workTask);
-  console.log(workHour, JSON.stringy(workTask));
+  var workHour = $(this).attr('id');
+  var workText = $(this).siblings('div.description').children("textarea").val();
+
+  localStorage.setItem(workHour, workText);
 })
 
-//task variable that holds the task items for each hour
-var tasks = JSON.parse(localStorage.getItem('work-schedule')) || [];
+//get localStorage
+$("#9-AM").children("textarea").val(localStorage.getItem("9AM"));
 
-//Add work task to hour
-$('.description').on('click', 'p', function(taskInput) {
-  var task = $(this).text().trim();
-  var taskInput = $('<textarea>').val(task);
-  $(this).replaceWith(taskInput);
-  taskInput.trigger('focus');
-});
+$("#10-AM").children("textarea").val(localStorage.getItem("10AM"));
 
-  // //save button was clicked
-  // $('.saveBtn').click(function(e){
-  //   //get description value
-  //   var text = $('.description').find('textarea').val();
+$("#11-AM").children("textarea").val(localStorage.getItem("11AM"));
 
-  //   schedule = text;
+$("#12-PM").children("textarea").val(localStorage.getItem("12PM"));
 
-  //   console.log(schedule);
+$("#1-PM").children("textarea").val(localStorage.getItem("1PM"));
 
-  //   saveSchedule();
-  // })
+$("#2-PM").children("textarea").val(localStorage.getItem("2PM"));
 
-  // //save schedule to localStorage
-  // var saveSchedule = function() {
-  //   localStorage.setItem("schedule", JSON.stringify(schedule));
-  // };
+$("#3-PM").children("textarea").val(localStorage.getItem("3PM"));
+
+$("#4-PM").children("textarea").val(localStorage.getItem("4PM"));
+
+$("#5-PM").children("textarea").val(localStorage.getItem("5PM"));
